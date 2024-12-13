@@ -1,0 +1,19 @@
+<header class="admin-header">
+  <div class="header-left admin-profile">
+    <img *ngIf="userImage" [src]="userImage" alt="Admin Image" class="admin-image" />
+    <span class="admin-name">{{ fullName }}</span>
+  </div>
+
+  <div class="header-center">
+    <img src="assets/final-logo.jpg" alt="logo" class="logo">
+  </div>
+
+  <div class="header-right">
+    <button class="profile-btn" (click)="openprofile()">
+      <i class="fas fa-user"></i> Profile
+    </button>
+    <button class="logout-btn" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </div>
+</header>

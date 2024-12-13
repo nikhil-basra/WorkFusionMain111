@@ -1,0 +1,16 @@
+<header class="employee-header">
+  <div class="logo">
+    <img src="assets/final-logo.jpg" alt="Company Logo" /> <!-- Replace with your company logo -->
+  </div>
+  <nav class="header-nav">
+    <a routerLink="employeeprofile" routerLinkActive="active">
+      <i class="fas fa-user"></i> Profile
+    </a>
+    <a>
+      <i class="fas fa-bell"></i> Notifications
+    </a>
+    <button class="logout-button" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+  </nav>
+</header>

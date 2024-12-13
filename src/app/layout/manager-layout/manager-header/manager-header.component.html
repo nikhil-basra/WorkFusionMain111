@@ -1,0 +1,17 @@
+<header class="manager-header">
+    <div class="logo">
+      <img src="assets/final-logo.jpg" alt="Company Logo" />
+    </div>
+    <nav class="header-nav">
+      <a routerLink="/manager/manager-profile" routerLinkActive="active">
+        <i class="fas fa-user"></i> 
+      </a>
+      <a routerLink="managernotifications" routerLinkActive="active">
+        <i class="fas fa-bell"></i> 
+      </a>
+      <a (click)="logout()" routerLinkActive="active">
+        <i class="fas fa-sign-out-alt"></i> 
+      </a>
+    </nav>
+  </header>
+  

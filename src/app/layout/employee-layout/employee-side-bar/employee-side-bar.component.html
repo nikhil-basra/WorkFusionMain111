@@ -1,0 +1,37 @@
+<nav class="employee-sidebar">
+  <div class="profile-container">
+    <div class="profile-pic">
+      <img [src]="employeeImage" alt="Profile Picture" />
+    </div>
+    <div class="employee-info">
+      <span class="employee-name">{{ employeeName }}</span> <!-- Display employee name -->
+    </div>
+  </div>
+  <a routerLink="employeehome" routerLinkActive="active">
+    <i class="fas fa-tachometer-alt"></i> Dashboard
+  </a>
+  <a routerLink="employee-welcome" routerLinkActive="active">
+    <i class="fas fa-comments"></i> Chat
+  </a>
+  <a routerLink="employeeprofile" routerLinkActive="active">
+    <i class="fas fa-user"></i> Profile
+  </a>
+  <a routerLink="employeeattendance" routerLinkActive="active">
+    <i class="fas fa-calendar-check"></i> Attendance
+  </a>
+  <a routerLink="employeeprojects" routerLinkActive="active">
+    <i class="fas fa-folder"></i> Projects
+  </a>
+  <a routerLink="employeetasks" routerLinkActive="active">
+    <i class="fas fa-tasks"></i> Tasks
+  </a>
+  <a routerLink="employeeleave-requests" routerLinkActive="active">
+    <i class="fas fa-plane"></i> Leave Requests
+  </a>
+  <a routerLink="employeeperformance" routerLinkActive="active">
+    <i class="fas fa-chart-line"></i> Performance
+  </a>
+    <a routerLink="/employee/employee-settings">
+      <i class="fa-solid fa-cog"></i> Settings
+    </a>
+</nav>

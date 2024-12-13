@@ -1,0 +1,108 @@
+
+  /* Header styling */
+  .admin-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333; 
+    color: #fff; 
+    padding: 20px; 
+    z-index: 1000; 
+    font-size: 1.2em; 
+    height: 80px; 
+    box-sizing: border-box; 
+  }
+  /* Center alignment for header title */
+  .header-center {
+    display: flex;
+    flex: 1; 
+    justify-content: center;
+    align-items: center;
+  }
+  .logo{
+    width: 200px;
+  height: 60px;
+  }
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+  /*logut button stling*/
+  .logout-btn {
+    background-color: #f44336; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    padding: 10px 15px;
+    cursor: pointer; 
+    display: flex; 
+    align-items: center; 
+    font-size: 16px; 
+    transition: background-color 0.3s;
+    margin-right: 20px; /* Adjusted right margin for alignment */
+  }
+  
+  .logout-btn:hover {
+    background-color: #d32f2f; 
+  }
+  
+  .logout-btn i {
+    margin-right: 5px; 
+    font-size: 18px; 
+  }
+  
+  /* Profile button styling */
+  .profile-btn {
+    background-color:green; /* Adjust as needed */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    color:#ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  .profile-btn i {
+    margin-right: 5px;
+  }
+  
+  .profile-btn:hover {
+    background-color:darkgreen; /* Adjust hover color */
+  }
+  
+  .admin-profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .admin-image-frame {
+    border: 3px solid #ccc; /* Border color for the frame */
+    border-radius: 50%; /* Circular frame */
+    padding: 10px; /* Increased padding for a larger frame */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px; /* Space between frame and admin name */
+  }
+  
+  .admin-image {
+    width: 50px; /* Increased image width */
+    height: 50px; /* Increased image height */
+    border-radius: 50%; /* Ensures the image is circular */
+  }
+  
+  .admin-name {
+    margin-left: 10px;
+  }

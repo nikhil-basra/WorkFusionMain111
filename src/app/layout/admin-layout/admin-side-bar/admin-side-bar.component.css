@@ -1,0 +1,48 @@
+
+  /* Sidebar styling */
+  .admin-sidebar {
+    position: fixed;
+    top: 80px; /* Align to the header height */
+    left: 0;
+    width: 250px; /* Width of the sidebar */
+    height: calc(100% - 140px); /* Adjusted for header and footer height */
+    background-color: #444; /* Sidebar background color */
+    color: #fff; /* Sidebar text color */
+    padding: 20px; /* Padding inside the sidebar */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
+    box-sizing: border-box; /* Ensures padding doesn’t affect width */
+  }
+  
+  /* Sidebar navigation styling */
+  .admin-sidebar nav ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+  }
+  
+  .admin-sidebar nav ul li {
+    margin-bottom: 15px; /* Space between sidebar items */
+  }
+  
+  .admin-sidebar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px; /* Optional: add rounded corners */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+  }
+  .admin-sidebar nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light background on hover */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Light shadow effect */
+    color: yellow;
+  }
+  .admin-sidebar nav ul li a i {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 1.2em;
+  }
+  
+  .right-side{
+    margin-left: 30px;
+  }

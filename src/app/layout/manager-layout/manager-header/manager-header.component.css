@@ -1,0 +1,50 @@
+/* Manager Header */
+.manager-header {
+    background-color: #0057a2;
+    color: #ffffff;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    width: 1125px;
+    z-index: 10;
+    margin-left: 0px; /* Offset by sidebar width */
+  }
+  
+  .manager-header .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .manager-header .logo img {
+    height: 50px;
+    width: 200px;
+  }
+  
+  .manager-header .header-nav {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  
+  .manager-header .header-nav a {
+    color: #ffffff;
+    font-size: 1rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+  }
+  
+  .manager-header .header-nav a:hover {
+    color: #ffcc00;
+  }
+  
+  .manager-header .header-nav i {
+    font-size: 1.2rem;
+  }
+  
