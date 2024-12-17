@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ClientsProjectRequestsModel } from '../models/clientProjectRequests.model';
 import { ClientModel } from '../models/client.model';
+import { ProjectModel } from '../models/projects.model';
 
 
 @Injectable({
@@ -97,6 +98,12 @@ updateClient(client: ClientModel): Observable<any> {
     params,
     responseType: 'text' as 'json' // Casting the type to avoid type issues
   });
+}
+
+//---------------------projects -----------------------
+getProjectsByClientId(): Observable<ProjectModel[]> {
+  const clientId = localStorage.getItem('EntityId');
+  return this.http.get<ProjectModel[]>(`${this.apiUrl}/projects/${clientId}`);
 }
 
 

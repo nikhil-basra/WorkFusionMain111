@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ManagerService } from '../../../services/manager.service';
 import { Router } from '@angular/router';
-import { ClientsProjectRequestsModel } from '../../../models/clientProjectRequests.model';  // Make sure to import the correct model
+import { ClientsProjectRequestsModel } from '../../../models/clientProjectRequests.model';
 
 @Component({
   selector: 'app-add-projects',
   templateUrl: './add-projects.component.html',
-  styleUrl: './add-projects.component.css'
+  styleUrls: ['./add-projects.component.css']
 })
-export class AddProjectsComponent {
+export class AddProjectsComponent implements OnInit {
   addProjectForm!: FormGroup;
   selectedFile: File | null = null;
-  clientId: number | null = null;  // Declare a variable to store clientId
-  teamMembers: { id: number, name: string }[] = [];
+  clientId: number | null = null;
+  selectedTeamMemberIds: number[] = [];
+  teamMembers: { id: number; fullName: string; employeeImage?: string }[] = []; // Added `employeeImage?`
+  // Dynamically fetched team members
+  teamMembersVisible: boolean = false; // New flag to toggle team member visibility
 
   constructor(
     private fb: FormBuilder,
@@ -23,20 +26,23 @@ export class AddProjectsComponent {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.fetchTeamMembers();
-    this.getProjectData();  // Fetch project data when the component initializes
+    this.loadTeamMembers(); // Fetch dynamic team members
+    this.getProjectData(); // Prefill project data
 
     const managerId = localStorage.getItem('EntityId');
     if (managerId) {
-      // Autofill managerId in the form
       this.addProjectForm.patchValue({ managerId });
     }
   }
 
+  toggleTeamMembers(): void {
+    this.teamMembersVisible = !this.teamMembersVisible;
+  }
+
   initializeForm(): void {
     this.addProjectForm = this.fb.group({
-      clientId: ['', Validators.required],  // Client ID will be prefilled
-      managerId: ['', Validators.required],  // Manager ID will be prefilled
+      clientId: ['', Validators.required],
+      managerId: ['', Validators.required],
       projectName: ['', Validators.required],
       description: [''],
       startDate: ['', Validators.required],
@@ -44,21 +50,23 @@ export class AddProjectsComponent {
       budget: ['', [Validators.required, Validators.min(0)]],
       status: ['', Validators.required],
       deadline: ['', Validators.required],
-      actualCost: ['', Validators.required],
-      teamMembers: ['', Validators.required],
+      actualCost: ['', [Validators.required, Validators.min(0)]],
+      teamMembers: [[], Validators.required],
       milestones: ['', Validators.required],
-      isActive: ['', Validators.required],  // Assuming this is a boolean
-      attachments: [null]  // Will store file data (Base64)
+      isActive: ['', Validators.required],
+      attachments: [null]
     });
   }
-  fetchTeamMembers(): void {
+
+  loadTeamMembers(): void {
     const managerId = localStorage.getItem('EntityId');
     if (managerId) {
       this.managerService.getEmployeesByManagerId(Number(managerId)).subscribe(
-        (response: any[]) => {
-          this.teamMembers = response.map((employee: any) => ({
-            id: employee.id,
-            name: `${employee.firstName} ${employee.lastName}`
+        (members) => {
+          this.teamMembers = members.map((member: any) => ({
+            id: member.employeeId,
+            fullName: `${member.firstName} ${member.lastName}`,
+            employeeImage: `data:image/jpeg;base64,${member.employeeImage}`
           }));
         },
         (error) => {
@@ -67,29 +75,25 @@ export class AddProjectsComponent {
       );
     }
   }
-  // Fetch project data (including clientId) from the backend and prefill the form
+  
   getProjectData(): void {
     const managerId = localStorage.getItem('EntityId');
     if (managerId) {
       this.managerService.getProjectRequestsManager(Number(managerId)).subscribe(
         (response: ClientsProjectRequestsModel[]) => {
           if (response && response.length > 0) {
-            const project = response[0];  // Assuming you want to prefill with the first project
-  
-            // Prefill the form fields with the fetched data
+            const project = response[0];
             this.addProjectForm.patchValue({
-              clientId: project.clientID,  // Prefill clientId
+              clientId: project.clientID,
               projectName: project.projectTitle,
               description: project.projectDescription,
               budget: project.budget,
-              status: project.isActive ,
+              status: project.isActive,
               deadline: project.deadline,
-               // Assuming budget as actual cost, modify as needed
               isActive: project.isActive,
-              attachments: project.attachments  // If you need to handle file attachments
+              attachments: project.attachments
             });
-  
-            this.clientId = project.clientID;  // Store clientId for future use if needed
+            this.clientId = project.clientID;
           }
         },
         (error) => {
@@ -98,9 +102,20 @@ export class AddProjectsComponent {
       );
     }
   }
-  
 
-  // Method to convert selected file to Base64
+  onTeamMemberSelectionChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const memberId = Number(input.value);
+    if (input.checked) {
+      this.selectedTeamMemberIds.push(memberId);
+    } else {
+      this.selectedTeamMemberIds = this.selectedTeamMemberIds.filter((id) => id !== memberId);
+    }
+    this.addProjectForm.patchValue({
+      teamMembers: this.selectedTeamMemberIds
+    });
+  }
+
   onFileSelect(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input?.files?.[0]) {
@@ -109,35 +124,31 @@ export class AddProjectsComponent {
     }
   }
 
-  goBack() {
-    this.router.navigate(['/manager/projects-requests']);
-  }
-
-  // Convert the file to Base64
   convertFileToBase64(file: File): void {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
-      const base64String = reader.result as string;
       this.addProjectForm.patchValue({
-        attachments: base64String  // Store the Base64 string in the form
+        attachments: reader.result
       });
-      console.log('File converted to Base64:', base64String);
-    };
-    reader.onerror = (error) => {
-      console.error('Error converting file to Base64:', error);
     };
   }
 
-  // Handle form submission
+  goBack(): void {
+    this.router.navigate(['/manager/projects-requests']);
+  }
+
   onSubmit(): void {
     if (this.addProjectForm.invalid) {
       console.log("Form is invalid");
       return; // Stop execution if form is invalid
     }
   
-    // Prepare the project object from form values
-    const project = this.addProjectForm.value;
+    // Convert the selected team member IDs to a comma-separated string
+    const teamMembersString = this.selectedTeamMemberIds.join(',');  // Join array into a string
+  
+    // Prepare the project object with the converted teamMembers as a string
+    const project = { ...this.addProjectForm.value, teamMembers: teamMembersString };
   
     // Call the createProject method of the service with project data and Base64 file
     this.managerService.createProject(project).subscribe(
@@ -145,14 +156,14 @@ export class AddProjectsComponent {
         console.log('Project created successfully!', response);
         alert('Project created successfully!');
         
-      // Reset the form after successful submission
-      this.addProjectForm.reset();
-       
-       },
+        // Reset the form after successful submission
+        this.addProjectForm.reset();
+      },
       (error: any) => {
         console.error('Error creating project:', error);
         // Optionally, show an error message
       }
     );
   }
-}  
+  
+}

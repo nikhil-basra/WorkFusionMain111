@@ -3,7 +3,7 @@
   </div>
   
   <div class="update-form-container container">
-    <h2>Add Project</h2>
+    <h2>Create New Project</h2>
     <form [formGroup]="addProjectForm" (ngSubmit)="onSubmit()">
       <!-- Row 1: Project ID and Client ID -->
       <div class="form-group row">
@@ -110,22 +110,42 @@
       </div>
   
   
-       <!-- Row 8: Team Members and Milestones -->
-       <!-- <div class="form-group row">
-        <div class="form-control-container">
-          <label for="teamMembers">Team Members</label>
-          <ng-select
-            [items]="teamMembersList"
-            bindLabel="name"
-            bindValue="id"
-            placeholder="Select Team Members"
-            [multiple]="true"
-            [clearable]="true"
-            formControlName="teamMembers">
-          </ng-select>
-        </div>
-      </div> -->
-      
+<!-- Row 6: Team Members -->
+<div class="form-group">
+  <div class="team-members-header"><b>Team Members  </b>
+    <button 
+      type="button" 
+      class="btn" 
+      [ngClass]="{'btn-danger': !teamMembersVisible, 'btn-success': teamMembersVisible}" 
+      (click)="toggleTeamMembers()">
+      {{ teamMembersVisible ? 'Hide Team Members' : 'Show Employees' }}
+    </button>
+    <label for="teamMembers"></label>
+  </div>
+
+  <div *ngIf="teamMembersVisible" id="teamMembers" class="team-members-container">
+    <div *ngFor="let member of teamMembers" class="team-member">
+      <input
+        type="checkbox"
+        [id]="'member_' + member.id"
+        [value]="member.id"
+        (change)="onTeamMemberSelectionChange($event)"
+      />
+      <label [for]="'member_' + member.id">
+        <img
+          *ngIf="member.employeeImage"
+          [src]="member.employeeImage"
+          alt="{{ member.fullName }}"
+          class="employee-image"
+        />
+        <span>{{ member.id }} - {{ member.fullName }}</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+            
+  
   
       <div class="form-control-container">
         <label for="milestones">Milestones</label>

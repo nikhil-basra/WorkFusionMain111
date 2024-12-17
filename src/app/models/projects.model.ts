@@ -8,6 +8,8 @@ export interface ProjectModel{
     status: string;
     clientFirstName:string;
     clientLastName:string;
+    managerFirstName:string;
+    managerLastName:string;
     clientId: number;
     updatedAt: Date; 
     managerId:number;
@@ -16,5 +18,6 @@ export interface ProjectModel{
     attachments:string;
     milestones: string;
     teamMembers: string;
+    teamMemberNames: string;
     isActive:boolean;
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ManagerService } from '../../../services/manager.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-update-projects',
@@ -11,6 +13,10 @@ import { ManagerService } from '../../../services/manager.service';
 export class UpdateProjectsComponent {
   updateProjectForm!: FormGroup; // Reactive Form
   projectId: string | null = null; // To store projectId from route
+  selectedTeamMemberIds: number[] = [];
+  teamMembers: { id: number; fullName: string; employeeImage?: string }[] = []; // Added `employeeImage?`
+  // Dynamically fetched team members
+  teamMembersVisible: boolean = false; // New flag to toggle team member visibility
 
 
 
@@ -18,7 +24,8 @@ export class UpdateProjectsComponent {
     private fb: FormBuilder,        // For building reactive form
     private route: ActivatedRoute,  // To get route parameters
     private managerService: ManagerService, // Service for API calls
-    private router: Router          // To navigate between routes
+    private router: Router,
+    private toastr: ToastrService // Inject ToastrService       // To navigate between routes
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +49,7 @@ export class UpdateProjectsComponent {
       attachments: [null], // Will store file data if any
       isActive: [true, Validators.required], // Assuming this is a boolean
     });
-
+    this.loadTeamMembers(); // Fetch dynamic team members
     // Get the projectId from route params and fetch the project data
     this.projectId = this.route.snapshot.paramMap.get('id'); // Assuming route is like '/projects/update/:id'
     if (this.projectId) {
@@ -86,6 +93,29 @@ export class UpdateProjectsComponent {
       }
     );
   }
+  
+  toggleTeamMembers(): void {
+    this.teamMembersVisible = !this.teamMembersVisible;
+  }
+
+
+  loadTeamMembers(): void {
+    const managerId = localStorage.getItem('EntityId');
+    if (managerId) {
+      this.managerService.getEmployeesByManagerId(Number(managerId)).subscribe(
+        (members) => {
+          this.teamMembers = members.map((member: any) => ({
+            id: member.employeeId,
+            fullName: `${member.firstName} ${member.lastName}`,
+            employeeImage: `data:image/jpeg;base64,${member.employeeImage}`
+          }));
+        },
+        (error) => {
+          console.error('Error fetching team members:', error);
+        }
+      );
+    }
+  }
 
   onFileSelect(event: any): void {
     const file = event.target.files[0]; // Get the selected file
@@ -113,26 +143,39 @@ export class UpdateProjectsComponent {
   goBack() {
     this.router.navigate(['/manager/list-all-projects']);
   }
- 
+
+  onTeamMemberSelectionChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const memberId = Number(input.value);
+    if (input.checked) {
+      this.selectedTeamMemberIds.push(memberId);
+    } else {
+      this.selectedTeamMemberIds = this.selectedTeamMemberIds.filter((id) => id !== memberId);
+    }
+    this.updateProjectForm.patchValue({
+      teamMembers: this.selectedTeamMemberIds
+    });
+  }
+
   
-  // Handle form submission to update project data
   onSubmit(): void {
     if (this.updateProjectForm.valid && this.projectId) {
-      const formValues = this.updateProjectForm.value;
-
-      // Send the form data to backend
-      console.log('Project ID:', this.projectId);
-      this.managerService.updateProject(+this.projectId, formValues).subscribe(
+      // Prepare the project object with selected team members as a string
+      const teamMembersString = this.selectedTeamMemberIds.join(',');  // Join array into a string
+      const project = { ...this.updateProjectForm.value, teamMembers: teamMembersString };
+  
+      // Send the correctly formatted data to backend
+      console.log('Project Data:', project);
+      this.managerService.updateProject(+this.projectId, project).subscribe(
         (response) => {
-          console.log('Project updated successfully:', response);
-          alert('Project updated successfully!');
-          this.router.navigate(['/projects']); // Navigate back to the project list or desired route
+          this.toastr.success('Project updated successfully!', 'Success'); // Show success toaster
+          this.router.navigate(['/manager/list-all-projects']); // Navigate back to projects list
         },
         (error) => {
           console.error('Error updating project:', error);
-          alert('Failed to update project. Please try again!');
+          this.toastr.error('Failed to update project. Please try again.', 'Error');
         }
       );
-    } 
-  }
+    }
+  } 
 }

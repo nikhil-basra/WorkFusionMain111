@@ -13,7 +13,7 @@ body {
   /* Form container styles */
   .update-form-container.container{
     background-color: white;
-    max-width: 650px;
+    max-width: 700px;
     width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -149,3 +149,47 @@ body {
     }
     
   }
+
+  .team-members-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .team-member {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f5f5f5;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .employee-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+  }
+  
+  /* Button styling */
+.team-members-header .btn {
+  margin-bottom: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 10px;
+}
+
+.team-members-header .btn-danger {
+  background-color: red;
+  color: white;
+  border-radius: 10px;
+}
+
+.team-members-header .btn-success {
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+}

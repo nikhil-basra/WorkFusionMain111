@@ -142,19 +142,40 @@
         </div>
       </div>
   
-      <!-- Row 8: Team Members and Milestones -->
-      <div class="form-group row">
-        <div class="form-control-container">
-          <label for="teamMembers">Team Members</label>
-          <input
-            type="text"
-            id="teamMembers"
-            class="form-control"
-            formControlName="teamMembers"
-            placeholder="Enter Team Members"
-          />
-        </div>
-      </div>
+    <!-- Row 6: Team Members -->
+<div class="form-group">
+  <div class="team-members-header"><b>Team Members  </b>
+    <button 
+      type="button" 
+      class="btn" 
+      [ngClass]="{'btn-danger': !teamMembersVisible, 'btn-success': teamMembersVisible}" 
+      (click)="toggleTeamMembers()">
+      {{ teamMembersVisible ? 'Hide Team Members' : 'Show Employees' }}
+    </button>
+    <label for="teamMembers"></label>
+  </div>
+
+  <div *ngIf="teamMembersVisible" id="teamMembers" class="team-members-container">
+    <div *ngFor="let member of teamMembers" class="team-member">
+      <input
+        type="checkbox"
+        [id]="'member_' + member.id"
+        [value]="member.id"
+        (change)="onTeamMemberSelectionChange($event)"
+      />
+      <label [for]="'member_' + member.id">
+        <img
+          *ngIf="member.employeeImage"
+          [src]="member.employeeImage"
+          alt="{{ member.fullName }}"
+          class="employee-image"
+        />
+        <span>{{ member.id }} - {{ member.fullName }}</span>
+      </label>
+    </div>
+  </div>
+</div>
+
   
       <div class="form-control-container">
         <label for="milestones">Milestones</label>
