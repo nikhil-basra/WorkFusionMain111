@@ -5,12 +5,13 @@ import { ManagerModel } from '../models/manager.model';
 import { ClientsProjectRequestsModel } from '../models/clientProjectRequests.model';
 import { ProjectModel } from '../models/projects.model';
 import { ClientModel } from '../models/client.model';
+import { TaskModel } from '../models/task.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ManagerService {
-  private apiUrl = 'https://localhost:7036/api/Manager'; // Replace with the actual API URL
+  private apiUrl = 'https://localhost:7036/api/Manager'; 
 
   constructor(private http: HttpClient) {}
 
@@ -103,10 +104,58 @@ export class ManagerService {
     return this.http.get<ClientModel>(`${this.apiUrl}/clients/${clientId}`, { headers: this.getAuthHeaders() });
   }
 
+
+  //-----------------------------employees---------------------------//
+
    // Fetch employees by ManagerId
    getEmployeesByManagerId(managerId: number): Observable<any> {
     const url = `${this.apiUrl}/GetByManager/${managerId}`;
     return this.http.get<any>(url, { headers: this.getAuthHeaders() });
   }
+
+    // Fetch employee by ID
+    getEmployeeById(id: number): Observable<any> {
+      return this.http.get<any>(`${this.apiUrl}/employees/${id}`, { headers: this.getAuthHeaders() });
+    }
+  
+
+      //-----------------------------Tasks---------------------------//
+
+  // Add a new task
+  addTask(task: TaskModel): Observable<any> {
+    const url = `${this.apiUrl}/addtask`;
+    return this.http.post<any>(url, task, { headers: this.getAuthHeaders() });
+  }
+
+  // Get task by ID
+  getTaskById(taskId: number): Observable<TaskModel> {
+    const url = `${this.apiUrl}/getTaskbyId/${taskId}`;
+    return this.http.get<TaskModel>(url, { headers: this.getAuthHeaders() });
+  }
+
+    // Get tasks by manager ID
+    getTasksByManagerId(managerId: number): Observable<TaskModel[]> {
+      const url = `${this.apiUrl}/getTaskbyManagerId/${managerId}`;
+      return this.http.get<TaskModel[]>(url, { headers: this.getAuthHeaders() });
+    }
+    
+  // Get all tasks
+  getAllTasks(): Observable<TaskModel[]> {
+    const url = `${this.apiUrl}/getAllTasks`;
+    return this.http.get<TaskModel[]>(url, { headers: this.getAuthHeaders() });
+  }
+
+  // Update task
+  updateTask(task: TaskModel): Observable<any> {
+    const url = `${this.apiUrl}/updateTasks`;
+    return this.http.put<any>(url, task, { headers: this.getAuthHeaders() });
+  }
+
+  // Delete task by ID
+  deleteTask(taskId: number): Observable<any> {
+    const url = `${this.apiUrl}/deleteTasks/${taskId}`;
+    return this.http.delete<any>(url, { headers: this.getAuthHeaders() });
+  }
+
 
 }

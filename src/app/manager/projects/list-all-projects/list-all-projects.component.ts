@@ -8,7 +8,7 @@ import { ProjectModel } from '../../../models/projects.model';
   templateUrl: './list-all-projects.component.html',
   styleUrl: './list-all-projects.component.css'
 })
-export class ListAllProjectsComponent {
+export class ListAllProjectsComponent implements OnInit {
   projects: ProjectModel[] = [];
   filteredProjects: ProjectModel[] = [];
   isDetailsView = false;
@@ -16,7 +16,7 @@ export class ListAllProjectsComponent {
   managerId: number = 0;
   searchQuery: string = '';
 
-  constructor(private managerService: ManagerService, private router: Router) {} // Inject Router
+  constructor(private managerService: ManagerService, private router: Router) {}
 
   ngOnInit(): void {
     const EntityId = localStorage.getItem('EntityId'); // Retrieve manager ID from localStorage
@@ -46,7 +46,8 @@ export class ListAllProjectsComponent {
     if (this.searchQuery) {
       this.filteredProjects = this.projects.filter(project =>
         project.projectName.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-        project.status.toLowerCase().includes(this.searchQuery.toLowerCase())
+        project.status.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
+        (project.clientFirstName + ' ' + project.clientLastName).toLowerCase().includes(this.searchQuery.toLowerCase()) // Include client name in search
       );
     } else {
       this.filteredProjects = this.projects;
@@ -73,6 +74,7 @@ export class ListAllProjectsComponent {
   backToList(): void {
     this.isDetailsView = false;
   }
+
   updateProgress() {
     // You can add any additional logic here if needed
   }

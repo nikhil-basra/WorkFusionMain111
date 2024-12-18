@@ -72,6 +72,11 @@ import { ProjectsRequestsComponent } from './manager/projects/projects-requests/
 import { ListAllProjectsComponent } from './manager/projects/list-all-projects/list-all-projects.component';
 import { UpdateProjectsComponent } from './manager/projects/update-projects/update-projects.component';
 import { AddProjectsComponent } from './manager/projects/add-projects/add-projects.component';
+import { AllTeamMembersComponent } from './manager/teamMember/all-team-members/all-team-members.component';
+import { TeamMemberComponent } from './manager/teamMember/team-member/team-member.component';
+import { ListAllTasksComponent } from './manager/tasks/list-all-tasks/list-all-tasks.component';
+import { AddNewTaskComponent } from './manager/tasks/add-new-task/add-new-task.component';
+import { UpdateTaskComponent } from './manager/tasks/update-task/update-task.component';
 
 
 const routes: Routes = [
@@ -124,16 +129,21 @@ const routes: Routes = [
     children: [
       { path: 'managerhome', component: ManagerHomeComponent },
       { path: 'manager-join-room', component : ManagerJoinRoomComponent},   
-      {path : 'manager-chat', component:ManagerChatComponent},
-      {path : 'manager-welcome', component:ManagerWelocomeComponent},
+      { path: 'manager-chat', component:ManagerChatComponent},
+      { path: 'manager-welcome', component:ManagerWelocomeComponent},
       { path: 'manager-settings', component: ManagerSettingsComponent },
       { path: 'manager-reset-password', component: ManagerResetPasswordComponent },
       { path: 'manager-profile', component: ManagerProfileComponent },
       { path: 'manager-profile-update/:id', component: ManagerProfileUpdateComponent },
-      {path:'list-all-projects', component:ListAllProjectsComponent},
-      {path:'add-projects/:id', component:AddProjectsComponent},
-      {path:'update-projects/:id',component:UpdateProjectsComponent},
-      {path: 'projects-requests', component:ProjectsRequestsComponent},
+      { path: 'list-all-projects', component:ListAllProjectsComponent},
+      { path: 'add-projects/:id', component:AddProjectsComponent},
+      { path: 'update-projects/:id',component:UpdateProjectsComponent},
+      { path: 'projects-requests', component:ProjectsRequestsComponent},
+      { path: 'all-team-members', component:AllTeamMembersComponent},
+      { path: 'team-member/:id',component:TeamMemberComponent},
+      { path: 'list-all-tasks',component:ListAllTasksComponent},
+      { path: 'add-new-task',component:AddNewTaskComponent},
+      { path: 'update-task/:id',component:UpdateTaskComponent},
       { path: '', redirectTo: 'managerhome', pathMatch: 'full' } 
     ]
   },

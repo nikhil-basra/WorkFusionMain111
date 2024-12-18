@@ -98,6 +98,11 @@ import { AddProjectsComponent } from './manager/projects/add-projects/add-projec
 import { ListProjectsComponent } from './client/projects/list-projects/list-projects.component';
 import { UpdateProjectsComponent } from './manager/projects/update-projects/update-projects.component';
 import { AdminProfileUpdateComponent } from './admin/profile/admin-profile-update/admin-profile-update.component';
+import { AllTeamMembersComponent } from './manager/teamMember/all-team-members/all-team-members.component';
+import { TeamMemberComponent } from './manager/teamMember/team-member/team-member.component';
+import { AddNewTaskComponent } from './manager/tasks/add-new-task/add-new-task.component';
+import { UpdateTaskComponent } from './manager/tasks/update-task/update-task.component';
+import { ListAllTasksComponent } from './manager/tasks/list-all-tasks/list-all-tasks.component';
 
 @NgModule({
   declarations: [
@@ -187,6 +192,11 @@ import { AdminProfileUpdateComponent } from './admin/profile/admin-profile-updat
     AdminProfileComponent,
     ListAllProjectsComponent,
     ProjectsRequestsComponent,
+    AllTeamMembersComponent,
+    TeamMemberComponent,
+    AddNewTaskComponent,
+    UpdateTaskComponent,
+    ListAllTasksComponent,
 
    
   ],
