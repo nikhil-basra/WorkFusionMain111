@@ -1,6 +1,6 @@
-<h2 style="text-align: center;">Task Assignments</h2>
+<h2 style="text-align: center;">Tasks</h2>
 <div class="task-container">
-  <!-- Header with Search Box and Assign New Task Button -->
+  <!-- Header with Search Box  -->
   <div class="header">
     <input 
       type="text" 
@@ -9,9 +9,6 @@
       [(ngModel)]="searchTerm" 
       (input)="filterTasks()" 
     />
-    <button routerLink="/manager/add-new-task" class="add-task-btn">
-      <span class="material-icons">add</span> Assign New Task
-    </button>
   </div>
 
   <!-- Task Cards Section -->
@@ -23,20 +20,16 @@
         <p>Start Date: <strong>{{ task.startDate | date: 'MMM dd, yyyy' }}</strong></p>
         <p>Due Date: <strong>{{ task.dueDate | date: 'MMM dd, yyyy' }}</strong></p>
         <p>Project : <strong>{{ task.projectName }}</strong></p>
-        <p>Employee: <strong>{{ task.employeeName }}</strong></p>
         <p>Priority: <strong>{{ task.priority | uppercase }}</strong></p>
         <p>Status: <strong>{{ task.status | uppercase }}</strong></p>
       </div>
       <div class="task-actions">
         <!-- Action Buttons -->
-        <button [routerLink]="['/manager/view-task', task.taskId]" class="icon-btn view-btn" title="View">
+        <button [routerLink]="['/employee/view-emp-task', task.taskId]" class="icon-btn view-btn" title="View">
           <span class="material-icons">visibility</span>
         </button>
-        <button [routerLink]="['/manager/update-task', task.taskId]" class="icon-btn edit-btn" title="Edit">
+        <button [routerLink]="['/employee/update-emp-task', task.taskId]" class="icon-btn edit-btn" title="Edit">
           <span class="material-icons">edit</span>
-        </button>
-        <button (click)="confirmDelete(task.taskId)" class="icon-btn delete-btn" title="Delete">
-          <span class="material-icons">delete</span>
         </button>
       </div>
     </div>

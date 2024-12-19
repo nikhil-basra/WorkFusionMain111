@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EmployeeModel } from '../models/employee.model';
+import { TaskModel, TaskStatusModel } from '../models/task.model';
+import { ProjectModel } from '../models/projects.model';
 
 @Injectable({
   providedIn: 'root'
@@ -64,4 +66,31 @@ export class EmployeeService {
     responseType: 'text' as 'json' // Casting the type to avoid type issues
   });
 }
+
+//------------------tasks------------------------------
+  // Get tasks by Employee ID
+    getTasksByEmployeeId(employeeId: number): Observable<TaskModel[]> {
+      const url = `${this.apiUrl}/getTaskbyEmployeeId/${employeeId}`;
+      return this.http.get<TaskModel[]>(url, { headers: this.getAuthHeaders() });
+    }    
+
+        
+      // Update task
+      updateTaskStatus(task: TaskStatusModel): Observable<any> {
+        const url = `${this.apiUrl}/updateTasksStatus`;
+        return this.http.put<any>(url, task, { headers: this.getAuthHeaders() });
+      }
+     // Get task by ID
+  getTaskById(taskId: number): Observable<TaskModel> {
+    const url = `${this.apiUrl}/getTaskbyId/${taskId}`;
+    return this.http.get<TaskModel>(url, { headers: this.getAuthHeaders() });
+  }
+
+  //------------------------projects ---------------------------
+    // Get projects by Employee ID
+    getProjectsByEmployeeId(employeeId: number): Observable<ProjectModel[]> {
+      const url = `${this.apiUrl}/GetProjectsByEmployeeId/${employeeId}`;
+      return this.http.get<ProjectModel[]>(url, { headers: this.getAuthHeaders() });
+    }
+
 }

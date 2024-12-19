@@ -18,7 +18,6 @@ import { EmployeeLayoutComponent } from './layout/employee-layout/employee-layou
 import { EmployeehomeComponent } from './employee/employeehome/employeehome.component';
 import { EmployeeattendanceComponent } from './employee/employeeattendance/employeeattendance.component';
 import { EmployeeprojectsComponent } from './employee/employeeprojects/employeeprojects.component';
-import { EmployeetasksComponent } from './employee/employeetasks/employeetasks.component';
 import { EmployeeleaverequestsComponent } from './employee/employeeleaverequests/employeeleaverequests.component';
 import { EmployeeperformanceComponent } from './employee/employeeperformance/employeeperformance.component';
 import { ManagerLayoutComponent } from './layout/manager-layout/manager-layout.component';
@@ -77,6 +76,10 @@ import { TeamMemberComponent } from './manager/teamMember/team-member/team-membe
 import { ListAllTasksComponent } from './manager/tasks/list-all-tasks/list-all-tasks.component';
 import { AddNewTaskComponent } from './manager/tasks/add-new-task/add-new-task.component';
 import { UpdateTaskComponent } from './manager/tasks/update-task/update-task.component';
+import { ViewTaskComponent } from './manager/tasks/view-task/view-task.component';
+import { ListAllEmpTasksComponent } from './employee/tasks/list-all-emp-tasks/list-all-emp-tasks.component';
+import { UpdateEmpTaskComponent } from './employee/tasks/update-emp-task/update-emp-task.component';
+import { ViewEmpTaskComponent } from './employee/tasks/view-emp-task/view-emp-task.component';
 
 
 const routes: Routes = [
@@ -112,11 +115,13 @@ const routes: Routes = [
       { path: 'employee-profile-update/:id', component: EmployeeProfileUpdateComponent },
       { path: 'employeeattendance', component: EmployeeattendanceComponent },
       { path: 'employeeprojects', component: EmployeeprojectsComponent },
-      { path: 'employeetasks', component: EmployeetasksComponent },
       { path: 'employeeleave-requests', component: EmployeeleaverequestsComponent }, // Consistent naming
       { path: 'employeeperformance', component: EmployeeperformanceComponent },
       { path: 'employee-settings', component: EmployeeSettingsComponent },
       { path: 'employee-reset-password', component: EmployeeResetPasswordComponent },
+      { path: 'list-all-emp-tasks',component:ListAllEmpTasksComponent},
+      { path: 'update-emp-task/:id',component:UpdateEmpTaskComponent},
+      { path: 'view-emp-task/:id',component:ViewEmpTaskComponent},
       { path: '', redirectTo: 'employeehome', pathMatch: 'full' } // Default route for the employee layout
     ]
   },
@@ -144,6 +149,7 @@ const routes: Routes = [
       { path: 'list-all-tasks',component:ListAllTasksComponent},
       { path: 'add-new-task',component:AddNewTaskComponent},
       { path: 'update-task/:id',component:UpdateTaskComponent},
+      { path: 'view-task/:id',component:ViewTaskComponent},
       { path: '', redirectTo: 'managerhome', pathMatch: 'full' } 
     ]
   },

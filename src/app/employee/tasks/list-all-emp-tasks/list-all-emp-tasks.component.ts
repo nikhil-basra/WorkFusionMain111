@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ManagerService } from '../../../services/manager.service';
 import { TaskModel } from '../../../models/task.model';
 import Swal from 'sweetalert2';
+import { EmployeeService } from '../../../services/employee.service';
 
 @Component({
-  selector: 'app-list-all-tasks',
-  templateUrl: './list-all-tasks.component.html',
-  styleUrls: ['./list-all-tasks.component.css']
+  selector: 'app-list-all-emp-tasks',
+  templateUrl: './list-all-emp-tasks.component.html',
+  styleUrl: './list-all-emp-tasks.component.css'
 })
-export class ListAllTasksComponent implements OnInit {
-  tasks: TaskModel[] = []; // Array to hold the list of tasks
+export class ListAllEmpTasksComponent implements OnInit{
+ tasks: TaskModel[] = []; // Array to hold the list of tasks
   filteredTasks: TaskModel[] = []; // Array to hold filtered tasks
   searchTerm: string = ''; // Search term for filtering
   isLoading: boolean = false; // Loading state for spinner
   errorMessage: string = ''; // Error handling
 
-  constructor(private managerService: ManagerService) {}
+  constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
     this.fetchTasks();
@@ -23,14 +23,14 @@ export class ListAllTasksComponent implements OnInit {
 
   // Method to fetch tasks by manager ID
   fetchTasks(): void {
-    const managerId = Number(localStorage.getItem('EntityId')); // Retrieve managerId from local storage
-    if (!managerId) {
+    const employeeId = Number(localStorage.getItem('EntityId')); // Retrieve managerId from local storage
+    if (!employeeId) {
       this.errorMessage = 'Manager ID not found in local storage.';
       return;
     }
 
     this.isLoading = true; // Start loading spinner
-    this.managerService.getTasksByManagerId(managerId).subscribe({
+    this.employeeService.getTasksByEmployeeId(employeeId).subscribe({
       next: (data: TaskModel[]) => {
         this.tasks = data; // Store the fetched tasks
         this.filteredTasks = [...this.tasks]; // Initialize filtered tasks
@@ -56,33 +56,4 @@ export class ListAllTasksComponent implements OnInit {
     );
   }
 
-  // Method to trigger SweetAlert before task deletion
-  confirmDelete(taskId: number): void {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You will not be able to recover this task!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.deleteTask(taskId); // Proceed to delete task if confirmed
-      }
-    });
-  }
-
-  // Method to delete task
-  deleteTask(taskId: number): void {
-    this.managerService.deleteTask(taskId).subscribe({
-      next: () => {
-        Swal.fire('Deleted!', 'Your task has been deleted.', 'success'); // Show success message
-        this.fetchTasks(); // Refresh the task list
-      },
-      error: (error) => {
-        console.error('Error deleting task:', error);
-        Swal.fire('Error!', 'There was an issue deleting the task. Please try again later.', 'error');
-      }
-    });
-  }
 }

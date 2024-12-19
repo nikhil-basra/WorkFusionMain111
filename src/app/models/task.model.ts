@@ -19,3 +19,9 @@ export interface TaskModel {
   projectName?: string; // Name of the project
   }
   
+  export interface TaskStatusModel {
+    taskId: number;
+    status: string;
+    startDate: string; 
+    endDate?: string; // Optional
+  }

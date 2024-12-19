@@ -48,7 +48,6 @@ import { EmployeeSideBarComponent } from './layout/employee-layout/employee-side
 import { EmployeehomeComponent } from './employee/employeehome/employeehome.component';
 import { EmployeeattendanceComponent } from './employee/employeeattendance/employeeattendance.component';
 import { EmployeeprojectsComponent } from './employee/employeeprojects/employeeprojects.component';
-import { EmployeetasksComponent } from './employee/employeetasks/employeetasks.component';
 import { EmployeeleaverequestsComponent } from './employee/employeeleaverequests/employeeleaverequests.component';
 import { EmployeeperformanceComponent } from './employee/employeeperformance/employeeperformance.component';
 import { AdminSideBarComponent } from './layout/admin-layout/admin-side-bar/admin-side-bar.component';
@@ -103,6 +102,10 @@ import { TeamMemberComponent } from './manager/teamMember/team-member/team-membe
 import { AddNewTaskComponent } from './manager/tasks/add-new-task/add-new-task.component';
 import { UpdateTaskComponent } from './manager/tasks/update-task/update-task.component';
 import { ListAllTasksComponent } from './manager/tasks/list-all-tasks/list-all-tasks.component';
+import { ViewTaskComponent } from './manager/tasks/view-task/view-task.component';
+import { ViewEmpTaskComponent } from './employee/tasks/view-emp-task/view-emp-task.component';
+import { ListAllEmpTasksComponent } from './employee/tasks/list-all-emp-tasks/list-all-emp-tasks.component';
+import { UpdateEmpTaskComponent } from './employee/tasks/update-emp-task/update-emp-task.component';
 
 @NgModule({
   declarations: [
@@ -151,7 +154,6 @@ import { ListAllTasksComponent } from './manager/tasks/list-all-tasks/list-all-t
     EmployeeprofileComponent,
     EmployeeattendanceComponent,
     EmployeeprojectsComponent,
-    EmployeetasksComponent,
     EmployeeleaverequestsComponent,
     EmployeeperformanceComponent,
     AdminSideBarComponent,
@@ -197,6 +199,10 @@ import { ListAllTasksComponent } from './manager/tasks/list-all-tasks/list-all-t
     AddNewTaskComponent,
     UpdateTaskComponent,
     ListAllTasksComponent,
+    ViewTaskComponent,
+    ViewEmpTaskComponent,
+    ListAllEmpTasksComponent,
+    UpdateEmpTaskComponent,
 
    
   ],
