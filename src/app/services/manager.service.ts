@@ -158,4 +158,12 @@ export class ManagerService {
   }
 
 
+
+
+  //-------------------------charts-------------------------
+  
+  getProjectStatusCounts(managerId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/manager/${managerId}/project-status-counts`, { headers: this.getAuthHeaders() });
+  }
+  
 }

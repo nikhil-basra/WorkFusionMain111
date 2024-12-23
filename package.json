@@ -20,6 +20,8 @@
     "@angular/platform-browser-dynamic": "^18.2.8",
     "@angular/router": "^18.2.8",
     "@microsoft/signalr": "^8.0.7",
+    "@swimlane/ngx-charts": "^21.1.2",
+    "jqwidgets-ng": "^21.0.0",
     "jwt-decode": "^2.2.0",
     "ng-angular-popup": "^0.6.2",
     "ngx-spinner": "^17.0.0",

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -106,6 +106,8 @@ import { ViewTaskComponent } from './manager/tasks/view-task/view-task.component
 import { ViewEmpTaskComponent } from './employee/tasks/view-emp-task/view-emp-task.component';
 import { ListAllEmpTasksComponent } from './employee/tasks/list-all-emp-tasks/list-all-emp-tasks.component';
 import { UpdateEmpTaskComponent } from './employee/tasks/update-emp-task/update-emp-task.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { jqxChartModule } from 'jqwidgets-ng/jqxchart';
 
 @NgModule({
   declarations: [
@@ -209,9 +211,11 @@ import { UpdateEmpTaskComponent } from './employee/tasks/update-emp-task/update-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule,// Add this module to the imports array
     FormsModule,          // Add FormsModule here
     HttpClientModule ,
+    NgxChartsModule,
+    jqxChartModule,
     MatSnackBarModule,
     BrowserAnimationsModule, // Include this module for animations
     ToastrModule.forRoot({
@@ -219,8 +223,10 @@ import { UpdateEmpTaskComponent } from './employee/tasks/update-emp-task/update-
       preventDuplicates: true, // Prevent duplicate toasts
     }),
     NgxSpinnerModule.forRoot(),
+     // Other imports
   
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],  // Add this line
   providers: [UserService,
     AuthenticationService,
     EmployeeService,
