@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ManagerModel } from '../models/manager.model';
 import { ClientModel } from '../models/client.model';
 import { Admin } from '../models/admin.model';
+import { ProjectModel } from '../models/projects.model';
 
 @Injectable({
   providedIn: 'root'
@@ -164,5 +165,31 @@ updateAdmin(userId: number, updatedAdmin: Admin): Observable<any> {
   );
 }
 
+//-------------------projects-------------------------------
+  // Fetch all projects
+  getAllProjects(): Observable<ProjectModel[]> {
+    return this.http.get<ProjectModel[]>(`${this.apiUrl}/projects`, {
+      headers: this.getAuthHeaders()
+    });
+  }
+
+//---------------------graphs------------------------------------
+// Get all project status counts
+getProjectStatusCounts(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/All-projects-status-counts`, { headers: this.getAuthHeaders() });
+}
+
+// Get department project status counts
+getDepartmentProjectStatusCounts(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/department-project-status-counts`, { headers: this.getAuthHeaders() });
+}
+
+
+  // Get active employee counts by department
+  getActiveEmployeeCountsByDepartment(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/active-employee-counts`, {
+      headers: this.getAuthHeaders(),
+    });
+  }
   
 }

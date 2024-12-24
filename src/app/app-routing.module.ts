@@ -22,7 +22,6 @@ import { EmployeeleaverequestsComponent } from './employee/employeeleaverequests
 import { EmployeeperformanceComponent } from './employee/employeeperformance/employeeperformance.component';
 import { ManagerLayoutComponent } from './layout/manager-layout/manager-layout.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
-import { HomeComponent } from './admin/home/home.component';
 import { ListManagerComponent } from './admin/manager/list-manager/list-manager.component';
 import { AddManagerComponent } from './admin/manager/add-manager/add-manager.component';
 import { UpdateManagerComponent } from './admin/manager/update-manager/update-manager.component';
@@ -80,6 +79,11 @@ import { ViewTaskComponent } from './manager/tasks/view-task/view-task.component
 import { ListAllEmpTasksComponent } from './employee/tasks/list-all-emp-tasks/list-all-emp-tasks.component';
 import { UpdateEmpTaskComponent } from './employee/tasks/update-emp-task/update-emp-task.component';
 import { ViewEmpTaskComponent } from './employee/tasks/view-emp-task/view-emp-task.component';
+import { AdminHomeComponent } from './admin/home/admin-home/admin-home.component';
+import { AllProjectsComponent } from './admin/home/all-projects/all-projects.component';
+import { DepartmentsProjectsComponent } from './admin/home/departments-projects/departments-projects.component';
+import { DepartmentsEmployeesComponent } from './admin/home/departments-employees/departments-employees.component';
+import { AdminAllProjectsComponent } from './admin/projects/admin-all-projects/admin-all-projects.component';
 
 
 const routes: Routes = [
@@ -159,7 +163,10 @@ const routes: Routes = [
     path: 'admin',
     component: AdminLayoutComponent,
     children: [
-      { path: 'home', component: HomeComponent },
+      { path: 'admin-home', component: AdminHomeComponent },
+      { path: 'all-projects', component: AllProjectsComponent },
+      { path: 'departments-projects', component: DepartmentsProjectsComponent },
+      { path: 'departments-employees', component: DepartmentsEmployeesComponent },
       { path: 'admin-profile', component: AdminProfileComponent },
       { path: 'admin-profile-update/:id', component: AdminProfileUpdateComponent },
       { path: 'manager/list-manager', component: ListManagerComponent },
@@ -175,7 +182,8 @@ const routes: Routes = [
       { path: 'department/add-department', component: AddDepartmentComponent},
       { path: 'department/update-department', component: UpdateDepartmentComponent},
       { path: 'user-requests', component: UserRequestsComponent},
-      { path: '', redirectTo: 'home', pathMatch: 'full' } 
+      { path: 'show-all-projects', component: AdminAllProjectsComponent },
+      { path: '', redirectTo: 'admin-home', pathMatch: 'full' } 
     ]
   },
 

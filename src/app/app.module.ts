@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { ManagerComponent } from './manager/manager.component';
 import { ClientComponent } from './client/client.component';
-import { HomeComponent } from './admin/home/home.component';
 import { AddEmployeeComponent } from './admin/employee/add-employee/add-employee.component';
 import { UpdateEmployeeComponent } from './admin/employee/update-employee/update-employee.component';
 import { ListEmployeeComponent } from './admin/employee/list-employee/list-employee.component';
@@ -108,6 +107,11 @@ import { ListAllEmpTasksComponent } from './employee/tasks/list-all-emp-tasks/li
 import { UpdateEmpTaskComponent } from './employee/tasks/update-emp-task/update-emp-task.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { jqxChartModule } from 'jqwidgets-ng/jqxchart';
+import { AdminHomeComponent } from './admin/home/admin-home/admin-home.component';
+import { AllProjectsComponent } from './admin/home/all-projects/all-projects.component';
+import { DepartmentsProjectsComponent } from './admin/home/departments-projects/departments-projects.component';
+import { DepartmentsEmployeesComponent } from './admin/home/departments-employees/departments-employees.component';
+import { AdminAllProjectsComponent } from './admin/projects/admin-all-projects/admin-all-projects.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +119,6 @@ import { jqxChartModule } from 'jqwidgets-ng/jqxchart';
     EmployeeComponent,
     ManagerComponent,
     ClientComponent,
-    HomeComponent,
     AddEmployeeComponent,
     UpdateEmployeeComponent,
     ListEmployeeComponent,
@@ -205,6 +208,11 @@ import { jqxChartModule } from 'jqwidgets-ng/jqxchart';
     ViewEmpTaskComponent,
     ListAllEmpTasksComponent,
     UpdateEmpTaskComponent,
+    AdminHomeComponent,
+    AllProjectsComponent,
+    DepartmentsProjectsComponent,
+    DepartmentsEmployeesComponent,
+    AdminAllProjectsComponent,
 
    
   ],
