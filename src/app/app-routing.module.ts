@@ -84,6 +84,9 @@ import { AllProjectsComponent } from './admin/home/all-projects/all-projects.com
 import { DepartmentsProjectsComponent } from './admin/home/departments-projects/departments-projects.component';
 import { DepartmentsEmployeesComponent } from './admin/home/departments-employees/departments-employees.component';
 import { AdminAllProjectsComponent } from './admin/projects/admin-all-projects/admin-all-projects.component';
+import { AdminJoinRoomComponent } from './admin/chat/admin-join-room/admin-join-room.component';
+import { AdminChatComponent } from './admin/chat/admin-chat/admin-chat.component';
+import { AdminWelcomeComponent } from './admin/chat/admin-welcome/admin-welcome.component';
 
 
 const routes: Routes = [
@@ -183,6 +186,9 @@ const routes: Routes = [
       { path: 'department/update-department', component: UpdateDepartmentComponent},
       { path: 'user-requests', component: UserRequestsComponent},
       { path: 'show-all-projects', component: AdminAllProjectsComponent },
+      { path: 'admin-join-room', component : AdminJoinRoomComponent},   
+      { path: 'admin-chat', component:AdminChatComponent},
+      { path: 'admin-welcome', component:AdminWelcomeComponent},
       { path: '', redirectTo: 'admin-home', pathMatch: 'full' } 
     ]
   },

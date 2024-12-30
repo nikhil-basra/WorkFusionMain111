@@ -112,6 +112,9 @@ import { AllProjectsComponent } from './admin/home/all-projects/all-projects.com
 import { DepartmentsProjectsComponent } from './admin/home/departments-projects/departments-projects.component';
 import { DepartmentsEmployeesComponent } from './admin/home/departments-employees/departments-employees.component';
 import { AdminAllProjectsComponent } from './admin/projects/admin-all-projects/admin-all-projects.component';
+import { AdminChatComponent } from './admin/chat/admin-chat/admin-chat.component';
+import { AdminJoinRoomComponent } from './admin/chat/admin-join-room/admin-join-room.component';
+import { AdminWelcomeComponent } from './admin/chat/admin-welcome/admin-welcome.component';
 
 @NgModule({
   declarations: [
@@ -213,6 +216,9 @@ import { AdminAllProjectsComponent } from './admin/projects/admin-all-projects/a
     DepartmentsProjectsComponent,
     DepartmentsEmployeesComponent,
     AdminAllProjectsComponent,
+    AdminChatComponent,
+    AdminJoinRoomComponent,
+    AdminWelcomeComponent,
 
    
   ],

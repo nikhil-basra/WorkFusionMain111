@@ -25,3 +25,10 @@ export interface TaskModel {
     startDate: string; 
     endDate?: string; // Optional
   }
+
+  export interface TaskCountModel {
+    pending: number;
+    completed: number;
+    workingOnIt: number;
+    total: number;
+  }

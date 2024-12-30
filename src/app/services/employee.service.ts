@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EmployeeModel } from '../models/employee.model';
-import { TaskModel, TaskStatusModel } from '../models/task.model';
+import { TaskCountModel, TaskModel, TaskStatusModel } from '../models/task.model';
 import { ProjectModel } from '../models/projects.model';
 
 @Injectable({
@@ -91,6 +91,14 @@ export class EmployeeService {
     getProjectsByEmployeeId(employeeId: number): Observable<ProjectModel[]> {
       const url = `${this.apiUrl}/GetProjectsByEmployeeId/${employeeId}`;
       return this.http.get<ProjectModel[]>(url, { headers: this.getAuthHeaders() });
+    }
+
+
+    //----------------graphs-----------------
+    // Get task counts by Employee ID
+    getTaskCountsByEmployeeId(employeeId: number): Observable<TaskCountModel> {
+      const url = `${this.apiUrl}/TasksCounts/${employeeId}`;
+      return this.http.get<TaskCountModel>(url, { headers: this.getAuthHeaders() });
     }
 
 }
