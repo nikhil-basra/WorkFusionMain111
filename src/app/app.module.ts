@@ -115,6 +115,9 @@ import { AdminAllProjectsComponent } from './admin/projects/admin-all-projects/a
 import { AdminChatComponent } from './admin/chat/admin-chat/admin-chat.component';
 import { AdminJoinRoomComponent } from './admin/chat/admin-join-room/admin-join-room.component';
 import { AdminWelcomeComponent } from './admin/chat/admin-welcome/admin-welcome.component';
+import { ManagerNotificationComponent } from './manager/manager-notification/manager-notification.component';
+import { EmployeeNotificationComponent } from './employee/employee-notification/employee-notification.component';
+import { AdminNotificationComponent } from './admin/admin-notification/admin-notification.component';
 
 @NgModule({
   declarations: [
@@ -219,6 +222,9 @@ import { AdminWelcomeComponent } from './admin/chat/admin-welcome/admin-welcome.
     AdminChatComponent,
     AdminJoinRoomComponent,
     AdminWelcomeComponent,
+    ManagerNotificationComponent,
+    EmployeeNotificationComponent,
+    AdminNotificationComponent,
 
    
   ],

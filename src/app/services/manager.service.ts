@@ -6,6 +6,7 @@ import { ClientsProjectRequestsModel } from '../models/clientProjectRequests.mod
 import { ProjectModel } from '../models/projects.model';
 import { ClientModel } from '../models/client.model';
 import { TaskModel } from '../models/task.model';
+import { NotificationModel } from '../models/notification.model';
 
 @Injectable({
   providedIn: 'root'
@@ -165,5 +166,39 @@ export class ManagerService {
   getProjectStatusCounts(managerId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/manager/${managerId}/project-status-counts`, { headers: this.getAuthHeaders() });
   }
+
+
+  //-------------------notifications-------------------
+  // Get notifications by EntityId and RoleId
+  getNotificationsByEntityAndRole(entityId: number, roleId: number): Observable<NotificationModel[]> {
+    return this.http.get<NotificationModel[]>(
+      `${this.apiUrl}/GetNotificationByEntityId/${entityId}/RoleId/${roleId}`,
+      { headers: this.getAuthHeaders() }
+    );
+  }
+
+          // Mark notification as read
+          markNotificationAsRead(notificationId: number): Observable<any> {
+            return this.http.put<any>(
+              `${this.apiUrl}/markRead/${notificationId}`,
+              {},
+              { headers: this.getAuthHeaders() }
+            );
+          }
+  
+  
+          deleteNotification(notificationId: number): Observable<any> {
+            return this.http.delete(`${this.apiUrl}/DeleteNotification/${notificationId}`, {
+              headers: this.getAuthHeaders(),
+            });
+          }
+  
+            // Fetch unread notification count by entityId and roleId
+            countUnreadNotifications(entityId: number, roleId: number): Observable<{ unreadCount: number }> {
+              return this.http.get<{ unreadCount: number }>(
+                `${this.apiUrl}/CountUnreadNotification/${entityId}/${roleId}`,
+                { headers: this.getAuthHeaders() }
+              );
+            }
   
 }

@@ -114,7 +114,25 @@
   .manager-footer a:hover {
     color: #ffcc00; /* Change color on hover */
   }
-  
+
+/* Active Link Styles */
+.manager-sidebar a.active {
+  background-color: #004d99; /* Deep blue background for active link */
+  color: #ffcc00; /* Gold color for text */
+  font-weight: bold; /* Bold text for visibility */
+  border-left: 5px solid #ffcc00; /* Left border to highlight active link */
+  padding-left: 25px; /* Indent to align text after border */
+  transition: all 0.3s ease; /* Smooth transition for hover and active states */
+}
+
+/* Hover Effect for Active Link */
+.manager-sidebar a.active:hover {
+  background-color: #003366; /* Darker blue on hover */
+  color: #ffffff; /* White text for contrast on hover */
+  border-left: 5px solid #ffffff; /* White border on hover */
+  transform: translateX(5px); /* Slight move to the right for hover effect */
+}
+
   /* Responsive Design for Smaller Screens */
   @media (max-width: 768px) {
     .manager-layout {

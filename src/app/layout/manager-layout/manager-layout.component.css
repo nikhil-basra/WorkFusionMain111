@@ -72,3 +72,30 @@
     height: 50px;
   }
   
+/* Notification count styling */
+.notification-count {
+  position: absolute;
+  top: -8px; /* Adjust for better positioning */
+  right: -8px; /* Adjust for better positioning */
+  background-color: #ff4d4d; /* A brighter red to make it pop */
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px; /* Slightly more padding for better legibility */
+  border-radius: 50%;
+  width: 20px; /* Fixed width to ensure the circle is consistent */
+  height: 20px; /* Fixed height for a perfect circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Subtle shadow to make it stand out */
+  z-index: 100; /* Ensure it sits on top of other elements */
+  font-size: 0.8rem; /* Adjust font size to fit inside the circle */
+}
+
+/* Ensure it adapts when there are two-digit counts */
+.notification-count.two-digit {
+  font-size: 0.75rem;
+  width: 24px; /* Increase width to accommodate two digits */
+  height: 24px; /* Increase height for consistency */
+}

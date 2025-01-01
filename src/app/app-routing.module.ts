@@ -87,6 +87,9 @@ import { AdminAllProjectsComponent } from './admin/projects/admin-all-projects/a
 import { AdminJoinRoomComponent } from './admin/chat/admin-join-room/admin-join-room.component';
 import { AdminChatComponent } from './admin/chat/admin-chat/admin-chat.component';
 import { AdminWelcomeComponent } from './admin/chat/admin-welcome/admin-welcome.component';
+import { ManagerNotificationComponent } from './manager/manager-notification/manager-notification.component';
+import { EmployeeNotificationComponent } from './employee/employee-notification/employee-notification.component';
+import { AdminNotificationComponent } from './admin/admin-notification/admin-notification.component';
 
 
 const routes: Routes = [
@@ -129,6 +132,7 @@ const routes: Routes = [
       { path: 'list-all-emp-tasks',component:ListAllEmpTasksComponent},
       { path: 'update-emp-task/:id',component:UpdateEmpTaskComponent},
       { path: 'view-emp-task/:id',component:ViewEmpTaskComponent},
+      { path: 'employee-notification',component:EmployeeNotificationComponent},
       { path: '', redirectTo: 'employeehome', pathMatch: 'full' } // Default route for the employee layout
     ]
   },
@@ -157,6 +161,7 @@ const routes: Routes = [
       { path: 'add-new-task',component:AddNewTaskComponent},
       { path: 'update-task/:id',component:UpdateTaskComponent},
       { path: 'view-task/:id',component:ViewTaskComponent},
+      { path: 'manager-notification',component:ManagerNotificationComponent},
       { path: '', redirectTo: 'managerhome', pathMatch: 'full' } 
     ]
   },
@@ -189,6 +194,7 @@ const routes: Routes = [
       { path: 'admin-join-room', component : AdminJoinRoomComponent},   
       { path: 'admin-chat', component:AdminChatComponent},
       { path: 'admin-welcome', component:AdminWelcomeComponent},
+      { path: 'admin-notification', component:AdminNotificationComponent},
       { path: '', redirectTo: 'admin-home', pathMatch: 'full' } 
     ]
   },

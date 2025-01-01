@@ -131,3 +131,21 @@
   background-color: #3498db;
   color: #ffffff;
 }
+
+/* Ensure the bell icon has relative positioning to anchor the badge */
+.manager-header .header-nav a {
+  position: relative; /* This allows the badge to be placed relative to the bell icon */
+}
+
+/* Active link styling */
+.employee-header a.active {
+  background-color: #1abc9c; /* Highlight color for active link */
+  color: #ffffff; /* White text for active link */
+  font-weight: bold; /* Bold for active link */
+}
+
+/* Hover effect for links */
+.employee-header a:hover {
+  background-color: #16a085; /* Darker background on hover */
+  color: #ffffff; /* White text on hover */
+}

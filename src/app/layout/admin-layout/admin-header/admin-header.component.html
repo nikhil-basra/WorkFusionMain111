@@ -5,15 +5,30 @@
   </div>
 
   <div class="header-center">
-    <img src="assets/final-logo.jpg" alt="logo" class="logo">
+    <img src="assets/final-logo.jpg" alt="logo" class="logo" />
   </div>
 
   <div class="header-right">
-    <button class="profile-btn" (click)="openprofile()">
-      <i class="fas fa-user"></i> Profile
+    <button
+      class="icon-btn profile-btn"
+      [ngClass]="{ 'active-btn': activeButton === 'profile' }"
+      (click)="openprofile()"
+    >
+      <i class="fas fa-user"></i>
     </button>
-    <button class="logout-btn" (click)="logout()">
-      <i class="fas fa-sign-out-alt"></i> Logout
+    <button
+      class="icon-btn notification-btn"
+      [ngClass]="{ 'active-btn': activeButton === 'notification' }"
+      (click)="onnotification()"
+    >
+      <i class="fas fa-bell"></i>
+    </button>
+    <button
+      class="icon-btn logout-btn"
+      [ngClass]="{ 'active-btn': activeButton === 'logout' }"
+      (click)="logout()"
+    >
+      <i class="fas fa-sign-out-alt"></i>
     </button>
   </div>
 </header>

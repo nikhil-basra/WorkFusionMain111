@@ -7,5 +7,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrl: './employee-layout.component.css'
 })
 export class EmployeeLayoutComponent {
+  unreadCount: number = 0;  // Variable to hold the unread notification count
 
+  constructor() {}
 }
