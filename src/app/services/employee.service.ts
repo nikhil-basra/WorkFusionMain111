@@ -5,6 +5,7 @@ import { EmployeeModel } from '../models/employee.model';
 import { TaskCountModel, TaskModel, TaskStatusModel } from '../models/task.model';
 import { ProjectModel } from '../models/projects.model';
 import { NotificationModel } from '../models/notification.model';
+import { LeaveModel } from '../models/Leave.model';
 
 @Injectable({
   providedIn: 'root'
@@ -138,5 +139,15 @@ export class EmployeeService {
             { headers: this.getAuthHeaders() }
           );
         }
+
+
+        // Fetch leave requests by employee ID
+   getLeavesByEmployeeId(employeeId: number): Observable<LeaveModel[]> {
+    return this.http.get<LeaveModel[]>(`${this.apiUrl}/GetEmployeeLeaves/${employeeId}`);
+  }
+
+  submitLeaveRequest(leaveRequest: LeaveModel): Observable<boolean> {
+    return this.http.post<boolean>(`${this.apiUrl}/submit-leave-request`, leaveRequest);
+  }
 
 }

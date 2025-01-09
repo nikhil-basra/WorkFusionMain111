@@ -7,6 +7,7 @@ import { ProjectModel } from '../models/projects.model';
 import { ClientModel } from '../models/client.model';
 import { TaskModel } from '../models/task.model';
 import { NotificationModel } from '../models/notification.model';
+import { LeaveModel } from '../models/Leave.model';
 
 @Injectable({
   providedIn: 'root'
@@ -200,5 +201,32 @@ export class ManagerService {
                 { headers: this.getAuthHeaders() }
               );
             }
+
+
+
+            //--------------------------------Leaves-----------------------------------------//
+  getPendingLeaves(managerId: number): Observable<LeaveModel[]> {
+    return this.http.get<LeaveModel[]>(`${this.apiUrl}/manager/${managerId}/pending`, {
+      headers: this.getAuthHeaders(),
+    });
+  }
+  
+  getRejectedLeaves(managerId: number): Observable<LeaveModel[]> {
+    return this.http.get<LeaveModel[]>(`${this.apiUrl}/manager/${managerId}/rejected`);
+  }
+  
+  getApprovedLeaves(managerId: number): Observable<LeaveModel[]> {
+    return this.http.get<LeaveModel[]>(`${this.apiUrl}/approved-leave-requests/${managerId}`);
+  }
+
+  approveLeaveRequest(leaveId: number, managerId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/leave-requests/${leaveId}/accept?managerId=${managerId}`, null);
+  }
+  
+   // Method to reject a leave request
+   rejectLeaveRequest(leaveId: number, managerId: number): Observable<any> {
+    const url = `${this.apiUrl}/leave-requests/${leaveId}/reject`;
+    return this.http.post<any>(url, null, { params: { managerId: managerId.toString() } });
+  }
   
 }

@@ -18,7 +18,6 @@ import { EmployeeLayoutComponent } from './layout/employee-layout/employee-layou
 import { EmployeehomeComponent } from './employee/employeehome/employeehome.component';
 import { EmployeeattendanceComponent } from './employee/employeeattendance/employeeattendance.component';
 import { EmployeeprojectsComponent } from './employee/employeeprojects/employeeprojects.component';
-import { EmployeeleaverequestsComponent } from './employee/employeeleaverequests/employeeleaverequests.component';
 import { EmployeeperformanceComponent } from './employee/employeeperformance/employeeperformance.component';
 import { ManagerLayoutComponent } from './layout/manager-layout/manager-layout.component';
 import { AdminLayoutComponent } from './layout/admin-layout/admin-layout.component';
@@ -90,6 +89,10 @@ import { AdminWelcomeComponent } from './admin/chat/admin-welcome/admin-welcome.
 import { ManagerNotificationComponent } from './manager/manager-notification/manager-notification.component';
 import { EmployeeNotificationComponent } from './employee/employee-notification/employee-notification.component';
 import { AdminNotificationComponent } from './admin/admin-notification/admin-notification.component';
+import { EmployeeLeaveRequestsComponent } from './employee/employee-leave-requests/employee-leave-requests.component';
+import { PendingLeavesComponent } from './manager/Leaves/pending-leaves/pending-leaves.component';
+import { RejectedLeavesComponent } from './manager/Leaves/rejected-leaves/rejected-leaves.component';
+import { ApprovedLeavesComponent } from './manager/Leaves/approved-leaves/approved-leaves.component';
 
 
 const routes: Routes = [
@@ -125,7 +128,6 @@ const routes: Routes = [
       { path: 'employee-profile-update/:id', component: EmployeeProfileUpdateComponent },
       { path: 'employeeattendance', component: EmployeeattendanceComponent },
       { path: 'employeeprojects', component: EmployeeprojectsComponent },
-      { path: 'employeeleave-requests', component: EmployeeleaverequestsComponent }, // Consistent naming
       { path: 'employeeperformance', component: EmployeeperformanceComponent },
       { path: 'employee-settings', component: EmployeeSettingsComponent },
       { path: 'employee-reset-password', component: EmployeeResetPasswordComponent },
@@ -133,6 +135,7 @@ const routes: Routes = [
       { path: 'update-emp-task/:id',component:UpdateEmpTaskComponent},
       { path: 'view-emp-task/:id',component:ViewEmpTaskComponent},
       { path: 'employee-notification',component:EmployeeNotificationComponent},
+      { path: 'employee-leave',component:EmployeeLeaveRequestsComponent},
       { path: '', redirectTo: 'employeehome', pathMatch: 'full' } // Default route for the employee layout
     ]
   },
@@ -162,6 +165,9 @@ const routes: Routes = [
       { path: 'update-task/:id',component:UpdateTaskComponent},
       { path: 'view-task/:id',component:ViewTaskComponent},
       { path: 'manager-notification',component:ManagerNotificationComponent},
+      {path:'pending-leaves',component:PendingLeavesComponent},
+      {path:'approved-leaves',component:ApprovedLeavesComponent},
+      {path:'rejected-leaves',component:RejectedLeavesComponent},
       { path: '', redirectTo: 'managerhome', pathMatch: 'full' } 
     ]
   },

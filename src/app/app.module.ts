@@ -47,7 +47,6 @@ import { EmployeeSideBarComponent } from './layout/employee-layout/employee-side
 import { EmployeehomeComponent } from './employee/employeehome/employeehome.component';
 import { EmployeeattendanceComponent } from './employee/employeeattendance/employeeattendance.component';
 import { EmployeeprojectsComponent } from './employee/employeeprojects/employeeprojects.component';
-import { EmployeeleaverequestsComponent } from './employee/employeeleaverequests/employeeleaverequests.component';
 import { EmployeeperformanceComponent } from './employee/employeeperformance/employeeperformance.component';
 import { AdminSideBarComponent } from './layout/admin-layout/admin-side-bar/admin-side-bar.component';
 import { EmployeeFooterComponent } from './layout/employee-layout/employee-footer/employee-footer.component';
@@ -118,6 +117,10 @@ import { AdminWelcomeComponent } from './admin/chat/admin-welcome/admin-welcome.
 import { ManagerNotificationComponent } from './manager/manager-notification/manager-notification.component';
 import { EmployeeNotificationComponent } from './employee/employee-notification/employee-notification.component';
 import { AdminNotificationComponent } from './admin/admin-notification/admin-notification.component';
+import { EmployeeLeaveRequestsComponent } from './employee/employee-leave-requests/employee-leave-requests.component';
+import { ApprovedLeavesComponent } from './manager/Leaves/approved-leaves/approved-leaves.component';
+import { PendingLeavesComponent } from './manager/Leaves/pending-leaves/pending-leaves.component';
+import { RejectedLeavesComponent } from './manager/Leaves/rejected-leaves/rejected-leaves.component';
 
 @NgModule({
   declarations: [
@@ -165,7 +168,6 @@ import { AdminNotificationComponent } from './admin/admin-notification/admin-not
     EmployeeprofileComponent,
     EmployeeattendanceComponent,
     EmployeeprojectsComponent,
-    EmployeeleaverequestsComponent,
     EmployeeperformanceComponent,
     AdminSideBarComponent,
     EmployeeHeaderComponent,
@@ -225,6 +227,10 @@ import { AdminNotificationComponent } from './admin/admin-notification/admin-not
     ManagerNotificationComponent,
     EmployeeNotificationComponent,
     AdminNotificationComponent,
+    EmployeeLeaveRequestsComponent,
+    ApprovedLeavesComponent,
+    PendingLeavesComponent,
+    RejectedLeavesComponent,
 
    
   ],
